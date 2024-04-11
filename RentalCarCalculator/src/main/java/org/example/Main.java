@@ -104,7 +104,7 @@ public class Main {
         System.out.printf("Basic car rental:       $%.2f \n" , baseCharge * daysRent);
         System.out.printf("Daily optional charges: $%.2f \n" , (tTag + bGPS + bRSA) * daysRent);
         System.out.printf("Age surcharge:          $%.2f \n" ,((((baseCharge + tTag + bGPS + bRSA) * daysRent) * shownAgeCharge)));
-        System.out.printf("_____________________________ \n");
+        System.out.printf("_______________________________ \n");
         System.out.printf("Total:                  $%.2f \n" , totalCharges);
 
 
