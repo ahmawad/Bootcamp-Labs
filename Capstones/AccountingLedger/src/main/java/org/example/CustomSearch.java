@@ -8,11 +8,7 @@ public class CustomSearch {
 
         for (Transaction transaction : transactions) {
             double amount = transaction.getAmount();
-            boolean matches = true;
-
-            if (startDate != null && transaction.getDate().compareTo(startDate) < 0) {
-                matches = false;
-            }
+            boolean matches = startDate == null || transaction.getDate().compareTo(startDate) >= 0;
 
             if (endDate != null && transaction.getDate().compareTo(endDate) > 0) {
                 matches = false;

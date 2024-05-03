@@ -8,7 +8,7 @@ public class SortSearch {
     public static List<Transaction> getAllTransactions(List<Transaction> transactions) {
         List<Transaction> allTransactions = new ArrayList<>();
 
-        Collections.sort(transactions, new Comparator<Transaction>() {
+        transactions.sort(new Comparator<Transaction>() {
             @Override
             public int compare(Transaction t1, Transaction t2) {
                 int dateComparison = t2.getDate().compareTo(t1.getDate());
@@ -33,7 +33,7 @@ public class SortSearch {
     public static List<Transaction> getAllDeposits(List<Transaction> transactions) {
         List<Transaction> deposits = new ArrayList<>();
 
-        Collections.sort(transactions, new Comparator<Transaction>() {
+        transactions.sort(new Comparator<Transaction>() {
             @Override
             public int compare(Transaction t1, Transaction t2) {
                 int dateComparison = t2.getDate().compareTo(t1.getDate());
@@ -57,7 +57,7 @@ public class SortSearch {
     public static List<Transaction> getAllPayments(List<Transaction> transactions) {
         List<Transaction> withdraw = new ArrayList<>();
 
-        Collections.sort(transactions, new Comparator<Transaction>() {
+        transactions.sort(new Comparator<Transaction>() {
             @Override
             public int compare(Transaction t1, Transaction t2) {
                 int dateComparison = t2.getDate().compareTo(t1.getDate());
@@ -88,18 +88,13 @@ public class SortSearch {
         LocalDate firstOfLastYear = firstOfYear.minusYears(1);
         LocalDate lastOfLastYear = firstOfYear.minusDays(1);
 
-        switch (period) {
-            case "MonthToDate":
-                return filterTransactions(transactions, firstDayOfMonth, currentDate);
-            case "PreviousMonth":
-                return filterTransactions(transactions, firstOfLastMonth, lastOfLastMonth);
-            case "YearToDate":
-                return filterTransactions(transactions, firstOfYear, currentDate);
-            case "PreviousYear":
-                return filterTransactions(transactions, firstOfLastYear, lastOfLastYear);
-            default:
-                throw new IllegalArgumentException("Invalid");
-        }
+        return switch (period) {
+            case "MonthToDate" -> filterTransactions(transactions, firstDayOfMonth, currentDate);
+            case "PreviousMonth" -> filterTransactions(transactions, firstOfLastMonth, lastOfLastMonth);
+            case "YearToDate" -> filterTransactions(transactions, firstOfYear, currentDate);
+            case "PreviousYear" -> filterTransactions(transactions, firstOfLastYear, lastOfLastYear);
+            default -> throw new IllegalArgumentException("Invalid");
+        };
     }
 
     private static List<Transaction> filterTransactions(List<Transaction> transactions, LocalDate startDate, LocalDate endDate) {

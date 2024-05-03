@@ -1,7 +1,26 @@
 date|time|description|vendor|amount
-2023-04-15|10:13:25|Ergonomic keyboard|Amazon|-89.50
-2023-04-15|11:15:00|Invoice 1001 paid|Joe|1500.00
-2024-05-02|22:03:01|Invoice 1002|Kerri Smith|153.63
-2024-05-02|22:09:55|Pizza|Serious Pizza|-350.78
-2024-05-02|23:35:44|Loan Interest Invoice|Jerry Jones|364.93
-2024-05-02|23:36:54|Interest Refund|Jerry Jones|-13.00
+2020-01-05|09:32:18|Utility bill|Utility Co.|-250.00
+2020-01-10|13:45:27|Consulting services|Consulting Co.|-2000.00
+2020-01-15|18:20:05|Internet subscription|ISP Corp|-100.00
+2020-02-15|16:40:20|Conference sponsorship|Event Planner|3000.00
+2021-01-05|09:32:18|Consulting services|Consulting Co.|-2500.00
+2021-01-10|13:45:27|Software development|Dev Team Inc.|5000.00
+2021-02-02|22:03:01|Invoice 1002 paid custom mouse|Jane Doe|153.63
+2021-02-05|12:30:15|Advertising services|Ad Agency|2000.00
+2021-02-10|09:15:00|Software licensing|Software Co.|1800.00
+2021-02-15|16:40:20|Conference sponsorship|Event Planner|3000.00
+2022-01-05|09:32:18|Consulting services|Consulting Co.|-2500.00
+2022-01-25|15:55:42|Training workshop|Training Inc.|1500.00
+2022-02-10|09:15:00|Software licensing|Software Co.|1800.00
+2022-05-15|16:40:20|Conference sponsorship|Event Planner|3000.00
+2023-01-05|09:32:18|Consulting services|Consulting Co.|-2500.00
+2023-01-10|13:45:27|Software development|Dev Team Inc.|5000.00
+2023-02-20|10:00:00|Product sales|Client A|7500.00
+2023-04-25|15:55:42|Training workshop|Training Inc.|1500.00
+2023-08-15|10:13:25|Ergonomic keyboard|Amazon|-89.50
+2023-10-15|11:15:00|Invoice 1001 paid car down payment|Joe|1500.00
+2024-01-05|09:32:18|Consulting services|Consulting Co.|-2500.00
+2024-01-10|13:45:27|Software development|Dev Team Inc.|5000.00
+2024-02-05|12:30:15|Advertising services|Ad Agency|2000.00
+2024-02-10|09:15:00|Software licensing|Software Co.|1800.00
+2024-04-15|16:40:20|Conference sponsorship|Event Planner|3000.00

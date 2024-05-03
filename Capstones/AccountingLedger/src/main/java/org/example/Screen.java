@@ -23,16 +23,10 @@ public class Screen {
                     """);
 
             switch (selection().toLowerCase()) {
-                case "d":
-                    addDeposit();
-                    break;
-                case "p":
-                    addPayment();
-                    break;
-                case "l":
-                    ledgerScreen();
-                    break;
-                case "x":
+                case "d" -> addDeposit();
+                case "p" -> addPayment();
+                case "l" -> ledgerScreen();
+                case "x" -> {
                     System.out.println("""
                                                                                                             ░░                                                                   \s
                                                                                                           ░░▒▒░░░░░░▒▒░░░░                                                       \s
@@ -93,13 +87,16 @@ public class Screen {
                                                                        $$$  Watch this money spread on the way out!  $$$
                             """);
                     System.exit(0);
-                    break;
-                default:
+                }
+                default -> {
                     System.out.println("That wasn't a cash money move!");
                     System.out.println("Select using the letter options listed!");
-
-                    try {Thread.sleep(2000);}
-                    catch (InterruptedException e) {throw new RuntimeException(e);}
+                    try {
+                        Thread.sleep(2000);
+                    } catch (InterruptedException e) {
+                        throw new RuntimeException(e);
+                    }
+                }
             }
         }
     }
@@ -201,33 +198,32 @@ public class Screen {
                     """);
 
             switch (selection().toLowerCase()) {
-                case "a":
+                case "a" -> {
                     List<Transaction> allTransactions = SortSearch.getAllTransactions(FileReadWrite.readTransaction());
                     transactionPrint(allTransactions);
-                    break;
-                case "d":
+                }
+                case "d" -> {
                     List<Transaction> deposits = SortSearch.getAllDeposits(FileReadWrite.readTransaction());
                     transactionPrint(deposits);
-                    break;
-                case "p":
+                }
+                case "p" -> {
                     List<Transaction> withdraw = SortSearch.getAllPayments(FileReadWrite.readTransaction());
                     transactionPrint(withdraw);
-                    break;
-                case "r":
-                    sortSelection();
-                    break;
-                case "h":
-                    homeScreen();
-                    break;
-                default:
+                }
+                case "r" -> sortSelection();
+                case "h" -> homeScreen();
+                default -> {
                     System.out.println("""
                             How are you gonna reach for your pocket and miss?
                             Select using the letter options listed!
                             Run that back.
                             """);
-
-                    try {Thread.sleep(2000);}
-                    catch (InterruptedException e) {throw new RuntimeException(e);}
+                    try {
+                        Thread.sleep(2000);
+                    } catch (InterruptedException e) {
+                        throw new RuntimeException(e);
+                    }
+                }
             }
         }
 
@@ -251,41 +247,40 @@ public class Screen {
                     """);
 
             switch (selection()) {
-                case "1":
+                case "1" -> {
                     List<Transaction> monthToDate = SortSearch.transactionsByPeriod(FileReadWrite.readTransaction(), "MonthToDate");
                     transactionPrint(monthToDate);
-                    break;
-                case "2":
+                }
+                case "2" -> {
                     List<Transaction> previousMonth = SortSearch.transactionsByPeriod(FileReadWrite.readTransaction(), "PreviousMonth");
                     transactionPrint(previousMonth);
-                    break;
-                case "3":
+                }
+                case "3" -> {
                     List<Transaction> yearToDate = SortSearch.transactionsByPeriod(FileReadWrite.readTransaction(), "YearToDate");
                     transactionPrint(yearToDate);
-                    break;
-                case "4":
+                }
+                case "4" -> {
                     List<Transaction> previousYear = SortSearch.transactionsByPeriod(FileReadWrite.readTransaction(), "PreviousYear");
                     transactionPrint(previousYear);
-                    break;
-                case "5":
+                }
+                case "5" -> {
                     List<Transaction> vendorSort = SortSearch.searchByVendor(FileReadWrite.readTransaction());
                     transactionPrint(vendorSort);
-                    break;
-                case "6":
-                    customSift();
-                    break;
-                case "0":
-                    ledgerScreen();
-                    break;
-                default:
+                }
+                case "6" -> customSift();
+                case "0" -> ledgerScreen();
+                default -> {
                     System.out.println("""
                             Pockets can get deep but not that deep.
                             Select using the numbers listed!
                             Run that back.
                             """);
-
-                    try {Thread.sleep(2000);}
-                    catch (InterruptedException e) {throw new RuntimeException(e);}
+                    try {
+                        Thread.sleep(2000);
+                    } catch (InterruptedException e) {
+                        throw new RuntimeException(e);
+                    }
+                }
             }
         }
     }
@@ -295,7 +290,7 @@ public class Screen {
         int transactionCount = 0;
 
         for (Transaction transaction : transactions) {
-            System.out.printf("%s %s %s %s %s\n",
+            System.out.printf("Date: %s Time: %s Description: %s Vendor: %s Amount: %s\n",
                     transaction.getDate(), transaction.getTime(), transaction.getDescription(), transaction.getVendor(), transaction.getAmount());
 
             transactionCount++;
@@ -310,7 +305,7 @@ public class Screen {
             catch (InterruptedException e) {throw new RuntimeException(e);}
         }
         else {
-            System.out.printf("Let me show you the %d I found.\n", transactionCount);
+            System.out.println("Those are all the money moves I found.");
         }
     }
 

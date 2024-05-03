@@ -6,7 +6,7 @@ import java.text.DecimalFormat;
 
 public class FileReadWrite {
 
-    private static String filePath = "src/main/resources/transactions.csv";
+    private static final String filePath = "src/main/resources/transactions.csv";
     private static final DecimalFormat def = new DecimalFormat("#0.00");
 
 
