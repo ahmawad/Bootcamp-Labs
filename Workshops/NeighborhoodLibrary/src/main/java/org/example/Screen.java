@@ -292,8 +292,106 @@ public class Screen {
 
     public void showCheckedOut(Book[] books) {
         Scanner scanner = new Scanner(System.in);
-        boolean checkedOutBooksExist = false;
-        for (Book book : books) {
+        //my code was working just before I commit and now I have to go back and double check
+
+//        boolean isCheckOut = false;
+//
+//        if (checkedOutBooksExist = true) {
+//
+//            System.out.println("Here are the current stolen volumes and the thief's that took them!");
+//
+//            System.out.println(books.getId()+" - "+books.getIsbn()+" - "+books.getTitle()+" (Checked out by: "+books.getCheckOutTo()+")");
+//
+//            try {
+//                Thread.sleep(2000);
+//            } catch (InterruptedException e) {
+//                throw new RuntimeException(e);
+//            }
+//            System.out.println("""
+//                    You know anything about the stolen good?
+//                    (Enter C to grovel and apologies before returning the book.)
+//                    (Enter X to lie and say it wasn't you!)
+//                    """);
+//            String userCheckIn = scanner.nextLine();
+//
+//            if (userCheckIn.equalsIgnoreCase("c")) {
+//
+//                System.out.println("""
+//                        And here I thought I would have to send Zoro after you.
+//                        What is the ID of the stolen volume you're returning?
+//                        If not then just enter something so dumb that I wouldn't be able to comprehend!
+//                        """);
+//                int userInput = scanner.nextInt();
+//
+//                    int selectedIndex = userInput - 1;
+//                    Book selectedBook = books[selectedIndex];
+//
+//                    if (selectedBook.isCheckOut()) {
+//                        selectedBook.setCheckOut(false);
+//                        selectedBook.setCheckOutTo(null);
+//                        System.out.println("Thank you for returning " + selectedBook.getTitle() + ". Please come again.");
+//                    return;
+//                    }
+//                    else {
+//                        System.out.println("Well I already have that in my collection. You must be mistaken.");
+//                    return;
+//                    }
+//
+//            }
+//            else if(userCheckIn.equalsIgnoreCase("x")){
+//                System.out.println("""
+//                        Lucky you!
+//                        Zoro was waiting just around the corner.
+//                        """);
+//                storeHomeScreen();
+//            }
+//            else{
+//                System.out.println("""
+//                        ⠀⠀⠀⠀⠀⠀⠍⠀⠀⠀⣠⣾⠟⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⡊⢿⣿⣿⣿⣿⣷⠀⢹⣿⣿⣿⣿⣿⣿⣿⣿⣿⣧⡀⠉⠳⣄⠀⠀⠀⠀⠀⠀
+//                        ⠀⠀⠀⠀⠀⠀⠀⠀⢀⡼⠋⠀⣼⣿⣿⣿⣿⣿⣿⣿⣿⣿⣯⣿⣿⠁⢀⢿⣿⣿⡇⢻⡞⣿⣿⣿⣿⡿⣿⣿⣿⣿⣿⣿⣷⡄⠀⠀⠀⠀⠀⠀⠀⠀
+//                        ⠀⠀⠀⠀⠀⠀⠀⠀⠈⠀⠀⣴⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠛⣡⣴⣿⡌⣿⣿⡇⢠⢿⣼⣿⣿⣿⡇⢻⣿⣿⣿⣿⣯⠻⣷⠀⠀⠀⠀⠀⠀⠀⠀
+//                        ⠁⠀⠀⠀⠀⠀⠀⠄⠀⠀⣼⡿⢫⣿⣿⣿⣿⣿⣿⣿⠚⣿⡇⣀⣈⣻⠻⠧⠘⣿⡇⠈⠚⢿⣿⣿⣿⡇⠸⣿⣿⣿⣿⣿⣧⠘⣇⠀⠀⠀⠀⠀⠀⠀
+//                        ⠀⠀⠀⠀⠀⠀⠀⠀⢀⠞⠋⠀⣼⣿⣿⣿⣿⣿⣿⣿⠊⢹⡉⢀⡀⠀⠁⠀⠀⢹⡇⡀⢉⣁⣠⣈⠉⠋⠁⣿⣿⣿⣿⣿⣿⣷⡈⠁⠀⠀⠀⠀⠀⠀
+//                        ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣿⣿⣿⣿⣿⣿⣿⣿⢠⡼⠟⠛⠒⢿⣗⠀⠀⠀⣧⢃⣾⠿⠒⠛⠛⠧⡀⠇⣿⣿⣿⣿⡇⠉⠻⢦⡀⢠⠆⠀⠀⠀
+//                        ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿⠏⣿⣿⣿⣿⢻⣿⢻⡭⠽⢯⣭⣷⣊⠁⠀⢺⣿⠘⣿⣯⣼⣿⣬⣟⣂⡀⣿⣿⣿⣿⣿⠀⠀⠂⠉⠛⠀⠀⠀⠀
+//                        ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⡏⣰⣿⣿⣿⣿⠈⣿⠀⠉⠉⠁⠉⠐⠿⠋⠀⠀⢸⠀⠀⠈⠉⠋⠉⠃⠀⠀⣿⣿⣿⠘⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀
+//                        ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠾⣰⡿⢻⣿⣿⣿⡆⠘⣠⣦⣖⠀⠀⠀⡴⢲⡀⠀⠈⣐⡒⣆⠀⠀⠀⠀⠀⠘⣿⠯⣿⡆⢹⠀⠀⠀⠀⠀⠀⠀⠀⠀
+//                        ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠰⠋⠀⢹⡟⢷⣝⣷⠚⣿⣿⡏⠀⠀⠈⠧⠿⠏⠀⠈⠛⠻⠋⠀⠀⠀⠀⠀⢀⣗⡿⣿⠛⠌⠀⠀⠀⠀⠀⠀⠀⠀⠀
+//                        ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠃⠀⠹⣜⠿⣵⠘⣿⣾⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣸⠿⡷⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+//                        ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠓⠬⢧⡛⠙⠛⢃⣤⣄⣒⣒⡒⠒⠒⠒⠤⠤⢤⣀⠀⠀⡠⠓⠋⠀⠂⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+//                        ⠀⠀⠀⠀⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠑⢄⡀⠀⠀⠲⠤⠤⠤⠌⠉⠉⠭⠭⠉⠁⣠⠞⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+//                        ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠐⠉⠒⠢⣤⣀⣀⣀⣀⣀⣀⡤⠤⠒⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+//                            Huh?
+//                            """);
+//                storeHomeScreen();
+//            }
+//
+//            scanner.nextInt();
+//
+//
+//            }
+//            else {
+//                System.out.println("""
+//                        ⠀⠀⠀⠀⠀⠀⠍⠀⠀⠀⣠⣾⠟⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⡊⢿⣿⣿⣿⣿⣷⠀⢹⣿⣿⣿⣿⣿⣿⣿⣿⣿⣧⡀⠉⠳⣄⠀⠀⠀⠀⠀⠀
+//                        ⠀⠀⠀⠀⠀⠀⠀⠀⢀⡼⠋⠀⣼⣿⣿⣿⣿⣿⣿⣿⣿⣿⣯⣿⣿⠁⢀⢿⣿⣿⡇⢻⡞⣿⣿⣿⣿⡿⣿⣿⣿⣿⣿⣿⣷⡄⠀⠀⠀⠀⠀⠀⠀⠀
+//                        ⠀⠀⠀⠀⠀⠀⠀⠀⠈⠀⠀⣴⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠛⣡⣴⣿⡌⣿⣿⡇⢠⢿⣼⣿⣿⣿⡇⢻⣿⣿⣿⣿⣯⠻⣷⠀⠀⠀⠀⠀⠀⠀⠀
+//                        ⠁⠀⠀⠀⠀⠀⠀⠄⠀⠀⣼⡿⢫⣿⣿⣿⣿⣿⣿⣿⠚⣿⡇⣀⣈⣻⠻⠧⠘⣿⡇⠈⠚⢿⣿⣿⣿⡇⠸⣿⣿⣿⣿⣿⣧⠘⣇⠀⠀⠀⠀⠀⠀⠀
+//                        ⠀⠀⠀⠀⠀⠀⠀⠀⢀⠞⠋⠀⣼⣿⣿⣿⣿⣿⣿⣿⠊⢹⡉⢀⡀⠀⠁⠀⠀⢹⡇⡀⢉⣁⣠⣈⠉⠋⠁⣿⣿⣿⣿⣿⣿⣷⡈⠁⠀⠀⠀⠀⠀⠀
+//                        ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣿⣿⣿⣿⣿⣿⣿⣿⢠⡼⠟⠛⠒⢿⣗⠀⠀⠀⣧⢃⣾⠿⠒⠛⠛⠧⡀⠇⣿⣿⣿⣿⡇⠉⠻⢦⡀⢠⠆⠀⠀⠀
+//                        ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿⠏⣿⣿⣿⣿⢻⣿⢻⡭⠽⢯⣭⣷⣊⠁⠀⢺⣿⠘⣿⣯⣼⣿⣬⣟⣂⡀⣿⣿⣿⣿⣿⠀⠀⠂⠉⠛⠀⠀⠀⠀
+//                        ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⡏⣰⣿⣿⣿⣿⠈⣿⠀⠉⠉⠁⠉⠐⠿⠋⠀⠀⢸⠀⠀⠈⠉⠋⠉⠃⠀⠀⣿⣿⣿⠘⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀
+//                        ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠾⣰⡿⢻⣿⣿⣿⡆⠘⣠⣦⣖⠀⠀⠀⡴⢲⡀⠀⠈⣐⡒⣆⠀⠀⠀⠀⠀⠘⣿⠯⣿⡆⢹⠀⠀⠀⠀⠀⠀⠀⠀⠀
+//                        ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠰⠋⠀⢹⡟⢷⣝⣷⠚⣿⣿⡏⠀⠀⠈⠧⠿⠏⠀⠈⠛⠻⠋⠀⠀⠀⠀⠀⢀⣗⡿⣿⠛⠌⠀⠀⠀⠀⠀⠀⠀⠀⠀
+//                        ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠃⠀⠹⣜⠿⣵⠘⣿⣾⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣸⠿⡷⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+//                        ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠓⠬⢧⡛⠙⠛⢃⣤⣄⣒⣒⡒⠒⠒⠒⠤⠤⢤⣀⠀⠀⡠⠓⠋⠀⠂⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+//                        ⠀⠀⠀⠀⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠑⢄⡀⠀⠀⠲⠤⠤⠤⠌⠉⠉⠭⠭⠉⠁⣠⠞⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+//                        ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠐⠉⠒⠢⣤⣀⣀⣀⣀⣀⣀⡤⠤⠒⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+//                            Huh?
+//                            """);
+//                storeHomeScreen();
+//            }
+//        }
+//        else {
             System.out.println("""
                        My collection is currently complete.
                        You can check them out by entering 1 or get the hell out :3
@@ -302,69 +400,8 @@ public class Screen {
                 Thread.sleep(2000);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
-            }
-            return;
-        }
-        if (!checkedOutBooksExist) {
-            System.out.println("Here are the current stolen volumes and the thief's that took them!");
-
-            //this would be used when implemented
-            //System.out.println(books.getId()+" - "+books.getIsbn()+" - "+books.getTitle()+" (Checked out by: "+books.getCheckOutTo()+")");
-
-            try {
-                Thread.sleep(2000);
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
-
-            System.out.println("""
-                        Since you're asking I assume you're the thief!
-                        And here I thought I would have to send Zoro after you.
-                        What is the ID of the stolen volume you're returning?
-                        If not then just enter something so dumb that I wouldn't be able to comprehend!
-                        """);
-
-            try {
-                Thread.sleep(2000);
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
-
-            int userInput = scanner.nextInt();
-
-            if (userInput > 0 && userInput <= books.length) {
-                int selectedIndex = userInput - 1;
-                Book selectedBook = books[selectedIndex];
-                if (selectedBook.isCheckOut()) {
-                    selectedBook.setCheckOut(false);
-                    selectedBook.setCheckOutTo(null);
-                    System.out.println("Thank you for returning " + selectedBook.getTitle() + ". Please come again.");
-                    System.exit(0);
-                } else {
-                    System.out.println("Well I already have that in my collection. You must be mistaken.");
-                    System.exit(0);
-                }
-            }
-            else {
-                System.out.println("""
-                        ⠀⠀⠀⠀⠀⠀⠍⠀⠀⠀⣠⣾⠟⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⡊⢿⣿⣿⣿⣿⣷⠀⢹⣿⣿⣿⣿⣿⣿⣿⣿⣿⣧⡀⠉⠳⣄⠀⠀⠀⠀⠀⠀
-                        ⠀⠀⠀⠀⠀⠀⠀⠀⢀⡼⠋⠀⣼⣿⣿⣿⣿⣿⣿⣿⣿⣿⣯⣿⣿⠁⢀⢿⣿⣿⡇⢻⡞⣿⣿⣿⣿⡿⣿⣿⣿⣿⣿⣿⣷⡄⠀⠀⠀⠀⠀⠀⠀⠀
-                        ⠀⠀⠀⠀⠀⠀⠀⠀⠈⠀⠀⣴⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠛⣡⣴⣿⡌⣿⣿⡇⢠⢿⣼⣿⣿⣿⡇⢻⣿⣿⣿⣿⣯⠻⣷⠀⠀⠀⠀⠀⠀⠀⠀
-                        ⠁⠀⠀⠀⠀⠀⠀⠄⠀⠀⣼⡿⢫⣿⣿⣿⣿⣿⣿⣿⠚⣿⡇⣀⣈⣻⠻⠧⠘⣿⡇⠈⠚⢿⣿⣿⣿⡇⠸⣿⣿⣿⣿⣿⣧⠘⣇⠀⠀⠀⠀⠀⠀⠀
-                        ⠀⠀⠀⠀⠀⠀⠀⠀⢀⠞⠋⠀⣼⣿⣿⣿⣿⣿⣿⣿⠊⢹⡉⢀⡀⠀⠁⠀⠀⢹⡇⡀⢉⣁⣠⣈⠉⠋⠁⣿⣿⣿⣿⣿⣿⣷⡈⠁⠀⠀⠀⠀⠀⠀
-                        ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣿⣿⣿⣿⣿⣿⣿⣿⢠⡼⠟⠛⠒⢿⣗⠀⠀⠀⣧⢃⣾⠿⠒⠛⠛⠧⡀⠇⣿⣿⣿⣿⡇⠉⠻⢦⡀⢠⠆⠀⠀⠀
-                        ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿⠏⣿⣿⣿⣿⢻⣿⢻⡭⠽⢯⣭⣷⣊⠁⠀⢺⣿⠘⣿⣯⣼⣿⣬⣟⣂⡀⣿⣿⣿⣿⣿⠀⠀⠂⠉⠛⠀⠀⠀⠀
-                        ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⡏⣰⣿⣿⣿⣿⠈⣿⠀⠉⠉⠁⠉⠐⠿⠋⠀⠀⢸⠀⠀⠈⠉⠋⠉⠃⠀⠀⣿⣿⣿⠘⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀
-                        ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠾⣰⡿⢻⣿⣿⣿⡆⠘⣠⣦⣖⠀⠀⠀⡴⢲⡀⠀⠈⣐⡒⣆⠀⠀⠀⠀⠀⠘⣿⠯⣿⡆⢹⠀⠀⠀⠀⠀⠀⠀⠀⠀
-                        ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠰⠋⠀⢹⡟⢷⣝⣷⠚⣿⣿⡏⠀⠀⠈⠧⠿⠏⠀⠈⠛⠻⠋⠀⠀⠀⠀⠀⢀⣗⡿⣿⠛⠌⠀⠀⠀⠀⠀⠀⠀⠀⠀
-                        ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠃⠀⠹⣜⠿⣵⠘⣿⣾⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣸⠿⡷⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-                        ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠓⠬⢧⡛⠙⠛⢃⣤⣄⣒⣒⡒⠒⠒⠒⠤⠤⢤⣀⠀⠀⡠⠓⠋⠀⠂⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-                        ⠀⠀⠀⠀⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠑⢄⡀⠀⠀⠲⠤⠤⠤⠌⠉⠉⠭⠭⠉⠁⣠⠞⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-                        ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠐⠉⠒⠢⣤⣀⣀⣀⣀⣀⣀⡤⠤⠒⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-                            Huh?
-                            """);
-                System.exit(0);
-            }
+//            }
+//            return;
         }
     }
 }
